@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, useNavigate } from 'react-router-dom';
 import { authorization } from '../utils/Auth';
-
+import Header from './Header';
 function Login(props) {
   const navigate = useNavigate();
 
@@ -18,21 +18,17 @@ function Login(props) {
 
   const handleSigninSubmit = (e) => {
     e.preventDefault();
-
-    authorization(email, password)
-      .then(data => {
-        if (data) {
-          localStorage.setItem('jwt', data.token);
-          navigate('/', {replace: true});
-
-          props.onLogin();
-
-        }
-      })
+    props.onSignin(email, password);
       
   }
 
   return (
+    <>
+    <Header>
+      <Link to="/sign-up" className="header__menu-item">
+        Регистрация
+      </Link>
+    </Header>
     <div className='auth-section'>
       <form className="auth-section__form" onSubmit={handleSigninSubmit}>
         <h1 className="auth-section__title">Вход</h1>
@@ -41,6 +37,7 @@ function Login(props) {
           type="email"
           onChange={handleEmailChange}
           placeholder="Email"
+          value={email || ''}
           required
         />
         <input
@@ -48,6 +45,7 @@ function Login(props) {
           type="password"
           onChange={handlePasswordChange}
           placeholder="Пароль"
+          value={password || ''}
           required
         />
         <button type="submit" className="auth-section__button">Войти</button>
@@ -60,6 +58,7 @@ function Login(props) {
           </p>
       </form>
     </div>
+    </>
   )
 }
 

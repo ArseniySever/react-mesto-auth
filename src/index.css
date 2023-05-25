@@ -4,6 +4,17 @@
 @import url(../src/blocks/page/page.css);
 @import url(../src/blocks/header/header.css);
 @import url(../src/blocks/header/__logo/header__logo.css);
+@import url(../src/blocks/header/__menu/header__menu.css);
+@import url(../src/blocks/header/__menu/_opened/header__menu_opened.css);
+@import url(../src/blocks/header/__menu-list/header__menu-list.css);
+@import url(../src/blocks/header/__menu-item/header__menu-item.css);
+@import url(../src/blocks/header/__menu-button/header__menu-button.css);
+@import url(../src/blocks/header/__menu-button/_opened/header__menu-button_opened.css);
+
+
+
+
+
 
 @import url(../src/blocks/profile/profile.css);
 @import url(../src/blocks/profile/__edit-button/profile__edit-button.css);
@@ -50,6 +61,9 @@
 @import url(../src/blocks/element/__heart/element__heart-number.css);
 @import url(../src/blocks/popup/__container/popup__container-delete.css);
 @import url(../src/blocks/element/__area/element__area.css);
+@import url(../src/blocks/popup/__registration-image-status/popup__registration-image-status.css);
+@import url(../src/blocks/popup/__title/_type/popup__title_type_tooltip.css);
+
 
 @import url(../src/blocks/auth-check/__img/auth-check__img.css);
 @import url(../src/blocks/auth-check/__text/auth-check__text.css);

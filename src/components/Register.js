@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registration } from '../utils/Auth';
+import Header from './Header';
 
 function Register(props) {
   const navigate = useNavigate();
@@ -14,27 +15,19 @@ function Register(props) {
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     const { email, password } = formValues;
-    if (email && password) {
-      registration(email, password)
-        .then((res) => {
-          props.setInfoTooltipData({ isSuccess: true, message: 'Вы успешно зарегистрировались!' });
-          props.setInfoTooltipOpen(true);
-          navigate('/sign-in', {replace: true});
-          handleLogin(email, password);
-
-        })
-        .catch((err) => {
-          props.setInfoTooltipData({ isSuccess: false, message: 'Что-то пошло не так! Попробуйте ещё раз.' });
-          props.setInfoTooltipOpen(true);
-        });
+    props.onRegist(email, password);
     }
-  };
 
-  const handleLogin = (email, password) => {
-    props.onLogin(email, password);
-  }
+
+
 
   return (
+    <>
+    <Header>
+      <Link to="/sign-in" className="header__menu-item">
+        Войти
+      </Link>
+    </Header>
     <div className='auth-section'>
       <form className="auth-section__form" onSubmit={handleRegisterSubmit}>
         <h1 className="auth-section__title">Регистрация</h1>
@@ -61,6 +54,7 @@ function Register(props) {
         <p className="auth-section__text">Уже зарегистрированы? <Link className="auth-section__link" to="/sign-in">Войти</Link></p>
       </form>
     </div>
+    </>
   );
 }
 

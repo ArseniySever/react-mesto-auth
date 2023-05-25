@@ -46,22 +46,6 @@ export const getContent = (token) => {
             'Authorization': `Bearer ${token}`
         }
     })
-        .then((res) => {
-            if (res.ok) return res.json();
-            else return Promise.reject(res.status);
-        })
-        .then((data) => data);
-};
-export const checkToken = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(handleResponse)
-      .then((data) => {
-        return data.email;
-      });
-  };
+    .then(res => res.json())
+    .then(data => data)
+} 

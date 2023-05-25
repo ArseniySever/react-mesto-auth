@@ -2,7 +2,6 @@ import React from "react";
 import Card from "./Card";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import Header from "./Header";
-import Footer from "./Footer";
 
 function Main(
   props
@@ -11,6 +10,12 @@ function Main(
 
   return (
     <>
+    <Header isWrappable={true}>
+      <p className="header__menu-item">{props.email}</p>
+      <button href="#" className="header__menu-item" onClick={props.onLogout}>
+        Выйти
+      </button>
+    </Header>
           <main className="main">
             <section className="profile">
               <div className="profile__avatar-area">
@@ -55,6 +60,7 @@ function Main(
             </section>
           </main>
       </>
+      
   );
 }
 export default Main;
