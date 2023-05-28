@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Routes, Navigate, useNavigate} from "react-router-dom";
-import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
@@ -16,8 +15,6 @@ import Login from "./Login";
 import Register from "./Register";
 import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
-import successImage from "../images/Unionfirst.png";
-import failImage from "../images/Union.png";
 
 function App() {
   const [isPopupPlaceOpen, setPopupPlaceOpen] = React.useState(false);
@@ -47,8 +44,7 @@ function App() {
         .then((res) => {
           if (res){
           setLoggedIn(true);
-          setEmail(email);
-
+          setEmail(res.data.email);
           navigate("/", {replace: true})
           }
         })
@@ -127,7 +123,6 @@ function App() {
     api
       .editAvatar({ url: avatar })
       .then((result) => {
-        setCurrentUser(result);
         closeAllPopups();
       })
       .catch((err) => console.log(`Error ${err} in editUserAvatar`));
@@ -149,14 +144,13 @@ function App() {
     setAuthToken(null);
     localStorage.removeItem('jwt');
     setLoggedIn(false);
-    setCurrentUser({});
     return <Navigate to="/signin" replace />;
   };
   function handleSignin (email, password) {
     Auth.authorization(email, password)
       .then(data => {
         if (data) {
-          localStorage.setItem('jwt', data.token);
+          localStorage.setItem('jwt', data);
           setEmail(email);
           navigate('/', {replace: true});
         }
